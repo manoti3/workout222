@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers, getWorkouts, getGoals } from '../api'; // Ensure these API functions are correctly implemented
+import { getUsers, getWorkouts, getGoals } from '../api';
+import './Dashboard.css';
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -31,7 +32,7 @@ const Dashboard = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="dashboard-container">
       <h2>Dashboard</h2>
       <div>
         <h3>Users</h3>

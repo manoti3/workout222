@@ -1,0 +1,12 @@
+/* src/pages/home.css */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .image-gallery img {
+    width: 25%;
+    margin: 10px;
+    border-radius: 10px;
+  }
