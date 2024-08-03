@@ -1,6 +1,4 @@
-# Standard library imports
-
-# Remote library imports
+# config.py
 from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -8,7 +6,6 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
-# Local imports
 
 # Instantiate app, set attributes
 app = Flask(__name__)
