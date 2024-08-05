@@ -20,12 +20,12 @@ const GoalList = () => {
     fetchGoals();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="loading-spinner">Loading...</div>;
 
   return (
     <div>
       <h2>Goal List</h2>
-      <ul>
+      <ul className="goal-list">
         {goals.length > 0 ? (
           goals.map(goal => (
             <li key={goal.id}>

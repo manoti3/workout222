@@ -4,7 +4,7 @@ import { getGoal, deleteGoal } from '../api';
 
 const GoalDetail = () => {
   const { goalId } = useParams();
-  const [goal, setGoal] = useState(null);
+  const [goal, setGoal] = useState(null); 
 
   useEffect(() => {
     const fetchGoal = async () => {

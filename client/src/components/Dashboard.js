@@ -29,38 +29,52 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="loading-spinner">Loading...</div>;
 
   return (
     <div className="dashboard-container">
       <h2>Dashboard</h2>
-      <div>
-        <h3>Users</h3>
-        <ul>
-          {users.map(user => (
-            <li key={user.id}>{user.username}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h3>Workouts</h3>
-        <ul>
-          {workouts.map(workout => (
-            <li key={workout.id}>
-              {workout.date} - {workout.type} ({workout.duration} mins)
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h3>Goals</h3>
-        <ul>
-          {goals.map(goal => (
-            <li key={goal.id}>
-              {goal.description} - Target Date: {goal.target_date}
-            </li>
-          ))}
-        </ul>
+      <div className="dashboard-grid">
+        <div className="widget">
+          <h3>Users</h3>
+          <ul>
+            {users.length > 0 ? (
+              users.map(user => (
+                <li key={user.id}>{user.username}</li>
+              ))
+            ) : (
+              <li>No users available.</li>
+            )}
+          </ul>
+        </div>
+        <div className="widget">
+          <h3>Workouts</h3>
+          <ul>
+            {workouts.length > 0 ? (
+              workouts.map(workout => (
+                <li key={workout.id}>
+                  {workout.date} - {workout.type} ({workout.duration} mins)
+                </li>
+              ))
+            ) : (
+              <li>No workouts available.</li>
+            )}
+          </ul>
+        </div>
+        <div className="widget">
+          <h3>Goals</h3>
+          <ul>
+            {goals.length > 0 ? (
+              goals.map(goal => (
+                <li key={goal.id}>
+                  {goal.description} - Target Date: {goal.target_date}
+                </li>
+              ))
+            ) : (
+              <li>No goals available.</li>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );

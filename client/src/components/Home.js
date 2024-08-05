@@ -9,8 +9,8 @@ import './home.css';
 const Home = () => {
   return (
     <div>
-      <h1>Welcome to the Workout Tracker App</h1>
-      <p>Track your workouts, set goals, and more!</p>
+      <h1>Welcome to the Workout Tracker =DANIEL & ALAAK=</h1>
+      <p>Track your workouts, set goals  with DANIEL AND ALAAK!</p>
       <div className="image-gallery">
         <img src={pic1} alt="Picture 1" className="img-fluid" />
         <img src={pic2} alt="Picture 2" className="img-fluid" />
