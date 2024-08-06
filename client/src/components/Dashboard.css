@@ -1,56 +1,72 @@
+/* General container styling */
 .dashboard-container {
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #f4f4f9;
-}
-
-.dashboard-container h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
-}
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.widget {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #e0e0e0, #ffffff);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Header styling */
+.dashboard-container h2 {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Grid layout for widgets */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Widget styling */
+.widget {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.widget:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
 .widget h3 {
-  margin-top: 0;
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
   color: #333;
 }
 
+/* List styling */
 .widget ul {
   list-style-type: none;
   padding: 0;
-  margin: 0;
 }
 
 .widget li {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
-  transition: background-color 0.3s;
+  border-bottom: 1px solid #eee;
+  color: #666;
 }
 
 .widget li:last-child {
   border-bottom: none;
 }
 
-.widget li:hover {
-  background: #f0f0f0;
-}
-
+/* Loading spinner styling */
 .loading-spinner {
-  text-align: center;
-  font-size: 18px;
-  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  color: #333;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { getWorkouts } from '../api';
+import './WorkoutList.css';
 
 const WorkoutList = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -23,12 +23,13 @@ const WorkoutList = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h2>Workout List</h2>
-      <ul>
-        {workouts.map(workout => (
-          <h1>{workout.date} - {workout.type} ({workout.duration} mins)</h1>
-          
+    <div className="workout-list-container">
+      <h2 className="workout-list-header">Workout List</h2>
+      <ul className="workout-list">
+        {workouts.map((workout, index) => (
+          <li key={index} className="workout-item">
+            <h1>{workout.date} - {workout.type} ({workout.duration} mins)</h1>
+          </li>
         ))}
       </ul>
     </div>

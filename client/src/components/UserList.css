@@ -1,0 +1,73 @@
+/* General container styling */
+.user-list-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #f0f0f0, #fafafa);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styling */
+  .user-list-header {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* List styling */
+  .user-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* User item styling */
+  .user-item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .user-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-item h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+  
+  /* Link styling */
+  .user-item a {
+    text-decoration: none;
+    color: #3498db;
+    transition: color 0.2s;
+  }
+  
+  .user-item a:hover {
+    color: #1d6fa5;
+  }
+  
+  /* Add some color highlights */
+  .user-item h1::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: #3498db;
+    margin-top: 8px;
+  }
+  

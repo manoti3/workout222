@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { getGoals } from '../api';
+import './GoalList.css';
 
 const GoalList = () => {
   const [goals, setGoals] = useState([]);
@@ -23,12 +23,14 @@ const GoalList = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h2>Goal List</h2>
-      <ul>
-        {goals.map(goal => (
-          <h1>{goal.description} - Target Date: {goal.target_date}</h1>
-        
+    <div className="goal-list-container">
+      <h2 className="goal-list-header">Goal List</h2>
+      <ul className="goal-list">
+        {goals.map((goal, index) => (
+          <li key={index} className="goal-item">
+            <h1>{goal.description}</h1>
+            <p className="target-date">Target Date: {goal.target_date}</p>
+          </li>
         ))}
       </ul>
     </div>

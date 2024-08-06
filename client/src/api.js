@@ -47,3 +47,4 @@ export const getGoal = async (id) => {
 export const deleteGoal = async (id) => {
   await fetch(`${API_URL}/goals/${id}`, { method: 'DELETE' });
 };
+
