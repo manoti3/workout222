@@ -144,4 +144,4 @@ api.add_resource(GoalDetail, '/goals/<int:goal_id>')
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Create tables in database
-    app.run(port=5555, debug=True)
+    app.run(port=5000, debug=True)

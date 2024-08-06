@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5555'; // Make sure this matches your backend URL
+const API_URL = 'http://localhost:5000'; // Make sure this matches your backend URL
 
 export const getUsers = async () => {
   const response = await fetch(`${API_URL}/users`);

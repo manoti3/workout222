@@ -20,23 +20,16 @@ const GoalList = () => {
     fetchGoals();
   }, []);
 
-  if (loading) return <div className="loading-spinner">Loading...</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div>
       <h2>Goal List</h2>
-      <ul className="goal-list">
-        {goals.length > 0 ? (
-          goals.map(goal => (
-            <li key={goal.id}>
-              <Link to={`/goals/${goal.id}`}>
-                {goal.description} - Target Date: {goal.target_date}
-              </Link>
-            </li>
-          ))
-        ) : (
-          <li>No goals available.</li>
-        )}
+      <ul>
+        {goals.map(goal => (
+          <h1>{goal.description} - Target Date: {goal.target_date}</h1>
+        
+        ))}
       </ul>
     </div>
   );

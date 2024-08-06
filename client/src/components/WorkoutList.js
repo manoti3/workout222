@@ -26,17 +26,10 @@ const WorkoutList = () => {
     <div>
       <h2>Workout List</h2>
       <ul>
-        {workouts.length > 0 ? (
-          workouts.map(workout => (
-            <li key={workout.id}>
-              <Link to={`/workouts/${workout.id}`}>
-                {workout.date} - {workout.type} ({workout.duration} mins)
-              </Link>
-            </li>
-          ))
-        ) : (
-          <li>No workouts available.</li>
-        )}
+        {workouts.map(workout => (
+          <h1>{workout.date} - {workout.type} ({workout.duration} mins)</h1>
+          
+        ))}
       </ul>
     </div>
   );
