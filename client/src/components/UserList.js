@@ -64,16 +64,6 @@ const UserList = () => {
     <div className="user-list-container">
       <h2 className="user-list-header">User List</h2>
       <Link to="/users/add">Add User</Link>
-      <ul className="user-list">
-        {users.map((user) => (
-          <li key={user.id} className="user-item">
-            <h1>{user.username}</h1>
-            <button onClick={() => handleViewProfile(user.id)}>View Profile</button>
-            <Link to={`/users/edit/${user.id}`}>Edit</Link>
-            <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -92,6 +82,17 @@ const UserList = () => {
         <br />
         <button type="submit">{isEditing ? 'Save Changes' : 'Add User'}</button>
       </form>
+      <ul className="user-list">
+        {users.map((user) => (
+          <li key={user.id} className="user-item">
+            <h1>{user.username}</h1>
+            <button onClick={() => handleViewProfile(user.id)}>View Profile</button>
+            <Link to={`/users/edit/${user.id}`}>Edit</Link>
+            <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+      
     </div>
   );
 };
