@@ -44,7 +44,9 @@ const Dashboard = () => {
           <ul>
             {users.length > 0 ? (
               users.map(user => (
-                <li key={user.id}>{user.username}</li>
+                <li key={user.id}>
+                  <p>{user.username}</p>
+                </li>
               ))
             ) : (
               <li>No users available.</li>
@@ -57,7 +59,7 @@ const Dashboard = () => {
             {workouts.length > 0 ? (
               workouts.map(workout => (
                 <li key={workout.id}>
-                  {workout.date} - {workout.type} ({workout.duration} mins)
+                  <p>{workout.type}</p>
                 </li>
               ))
             ) : (
@@ -71,7 +73,7 @@ const Dashboard = () => {
             {goals.length > 0 ? (
               goals.map(goal => (
                 <li key={goal.id}>
-                  {goal.description} - Target Date: {goal.target_date}
+                  <p>{goal.description}</p>
                 </li>
               ))
             ) : (
