@@ -9,6 +9,7 @@ from models import User, Workout, Goal
 def index():
     return '<h1>Project Server</h1>'
 
+# User resources
 class UserList(Resource):
     def get(self):
         users = User.query.all()
@@ -50,6 +51,18 @@ class UserDetail(Resource):
         db.session.commit()
         return make_response({}, 204)
 
+    def put(self, user_id):
+        user = User.query.get(user_id)
+        if user is None:
+            return make_response({"error": "User not found"}, 404)
+        data = request.get_json()
+        user.username = data.get("username", user.username)
+        user.email = data.get("email", user.email)
+        user.password = data.get("password", user.password)  # Update password handling as needed
+        db.session.commit()
+        return make_response(user.to_dict(), 200)
+
+# Workout resources
 class WorkoutList(Resource):
     def get(self):
         workouts = Workout.query.all()
@@ -92,6 +105,19 @@ class WorkoutDetail(Resource):
         db.session.commit()
         return make_response({}, 204)
 
+    def put(self, workout_id):
+        workout = Workout.query.get(workout_id)
+        if workout is None:
+            return make_response({"error": "Workout not found"}, 404)
+        data = request.get_json()
+        workout.date = data.get("date", workout.date)
+        workout.type = data.get("type", workout.type)
+        workout.duration = data.get("duration", workout.duration)
+        workout.user_id = data.get("user_id", workout.user_id)
+        db.session.commit()
+        return make_response(workout.to_dict(), 200)
+
+# Goal resources
 class GoalList(Resource):
     def get(self):
         goals = Goal.query.all()
@@ -132,6 +158,17 @@ class GoalDetail(Resource):
         db.session.delete(goal)
         db.session.commit()
         return make_response({}, 204)
+
+    def put(self, goal_id):
+        goal = Goal.query.get(goal_id)
+        if goal is None:
+            return make_response({"error": "Goal not found"}, 404)
+        data = request.get_json()
+        goal.description = data.get("description", goal.description)
+        goal.target_date = data.get("target_date", goal.target_date)
+        goal.user_id = data.get("user_id", goal.user_id)
+        db.session.commit()
+        return make_response(goal.to_dict(), 200)
 
 # Add resources to API
 api.add_resource(UserList, '/users')
