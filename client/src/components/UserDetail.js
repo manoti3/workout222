@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useLocation } from 'react-router-dom';
 import { getUser, deleteUser } from '../api';
 
 const UserDetail = () => {
-  const { userId } = useParams();
+  const location = useLocation();
+  console.log(location.pathname,'location')
   const [user, setUser] = useState(null);
+  const id = location.pathname.split('/').pop();
+
+  console.log(id,'test2.0')
 
   useEffect(() => {
     const fetchUser = async () => {
-      const data = await getUser(userId);
+      const data = await getUser(id);
+      console.log(data,'detail')
       setUser(data);
     };
     fetchUser();
-  }, [userId]);
+  }, [id]);
 
   const handleDelete = async () => {
-    await deleteUser(userId);
+    await deleteUser(id);
     // Redirect or update state after deletion
   };
 

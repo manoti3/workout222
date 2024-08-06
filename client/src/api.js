@@ -9,6 +9,7 @@ export const getUsers = async () => {
 export const getUser = async (id) => {
   const response = await fetch(`${API_URL}/users/${id}`);
   const data = await response.json();
+  console.log(data,"from API")
   return data;
 };
 

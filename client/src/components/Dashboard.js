@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { getUsers, getWorkouts, getGoals } from '../api'; 
 import './Dashboard.css'; 
+import UserDetail from './UserDetail';
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [workouts, setWorkouts] = useState([]);
   const [goals, setGoals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setError(null);
       try {
         const [usersData, workoutsData, goalsData] = await Promise.all([
           getUsers(),
@@ -21,7 +24,7 @@ const Dashboard = () => {
         setWorkouts(workoutsData || []);
         setGoals(goalsData || []);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -30,11 +33,12 @@ const Dashboard = () => {
   }, []);
 
   if (loading) return <div className="loading-spinner">Loading...</div>;
+  if (error) return <div className="error-message">{error}</div>;
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard__container">
       <h2>Dashboard</h2>
-      <div className="dashboard-grid">
+      <div className="dashboard__grid">
         <div className="widget">
           <h3>Users</h3>
           <ul>
