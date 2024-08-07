@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getGoals, addGoal, updateGoal, deleteGoal, getGoal } from '../api';
 import './GoalList.css';
 
-
 const GoalList = () => {
-  const history = useHistory();
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
   const { id } = useParams();
   const [goals, setGoals] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,9 +29,13 @@ const GoalList = () => {
   useEffect(() => {
     if (id) {
       const fetchGoal = async () => {
-        const data = await getGoal(id);
-        setDescription(data.description);
-        setTargetDate(data.target_date);
+        try {
+          const data = await getGoal(id);
+          setDescription(data.description);
+          setTargetDate(data.target_date);
+        } catch (error) {
+          console.error("Error fetching goal:", error);
+        }
       };
       fetchGoal();
       setIsEditing(true);
@@ -40,7 +43,7 @@ const GoalList = () => {
   }, [id]);
 
   const handleViewGoal = (id) => {
-    history.push(`/goals/${id}`);
+    navigate(`/goals/${id}`); // Update navigation
   };
 
   const handleDeleteGoal = async (id) => {
@@ -55,7 +58,7 @@ const GoalList = () => {
     } else {
       await addGoal({ description, target_date: targetDate });
     }
-    history.push('/goals');
+    navigate('/goals'); // Update navigation
   };
 
   if (loading) return <div>Loading...</div>;
@@ -88,7 +91,6 @@ const GoalList = () => {
           </li>
         ))}
       </ul>
-     
     </div>
   );
 };

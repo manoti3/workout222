@@ -1,0 +1,126 @@
+/* Footer.css */
+
+.footer {
+    background-color: #1a1a1a; /* Dark background for a sleek look */
+    color: #f4f4f4; /* Light text color for contrast */
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin: 0 15px;
+    min-width: 200px;
+  }
+  
+  .footer-column h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff; /* White text for headers */
+    font-weight: bold;
+  }
+  
+  .footer-column ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-column ul li a {
+    color: #f4f4f4;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease; /* Smooth transition for color change */
+  }
+  
+  .footer-column ul li a:hover {
+    color: #ff9900; /* Highlight color on hover */
+  }
+  
+  .icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  
+  .icons a {
+    color: #f4f4f4;
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and transform */
+  }
+  
+  .icons a:hover {
+    color: #ff9900; /* Highlight color on hover */
+    transform: scale(1.2); /* Scale up on hover */
+  }
+  
+  .newsletter {
+    margin-top: 20px;
+  }
+  
+  .newsletter h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+  
+  .subscribe-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .subscribe-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ffffff;
+    border-radius: 5px 0 0 5px;
+    width: 300px; /* Adjust width as needed */
+    color: #000; /* Dark text color for readability */
+  }
+  
+  .subscribe-button {
+    background-color: #ff9900; /* Bright call-to-action color */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .subscribe-button:hover {
+    background-color: #cc7a00; /* Darker shade on hover */
+  }
+  
+  .text-center {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .text-center p {
+    margin: 0;
+  }
+  
+  .text-center a {
+    color: #ff9900;
+    text-decoration: none;
+  }
+  
+  .text-center a:hover {
+    text-decoration: underline;
+  }
+  

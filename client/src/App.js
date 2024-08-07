@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom'; // Correct imports for v6
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
@@ -9,24 +9,23 @@ import WorkoutList from './components/WorkoutList';
 import WorkoutDetail from './components/WorkoutDetail';
 import GoalList from './components/GoalList';
 import GoalDetail from './components/GoalDetail';
+import AboutUs from './components/AboutUs';
 
 const App = () => (
-  
-   <>
-  
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route exact path="/users" component={UserList} />
-        <Route path="/users/:id" component={UserDetail} />
-        <Route exact path="/workouts" component={WorkoutList} />
-        <Route path="/workouts/:workoutId" component={WorkoutDetail} />
-        <Route exact path="/goals" component={GoalList} />
-        <Route path="/goals/:goalId" component={GoalDetail} />
-      </Switch>
-   </>
- 
+  <>
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/users" element={<UserList />} />
+      <Route path="/users/:id" element={<UserDetail />} />
+      <Route path="/workouts" element={<WorkoutList />} />
+      <Route path="/workouts/:workoutId" element={<WorkoutDetail />} />
+      <Route path="/goals" element={<GoalList />} />
+      <Route path="/goals/:goalId" element={<GoalDetail />} />
+      <Route path="/about-us" element={<AboutUs />} />
+    </Routes>
+  </>
 );
 
 export default App;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getUsers, deleteUser, addUser, getUser, updateUser } from '../api';
 import './UserList.css';
 
 const UserList = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,32 +30,44 @@ const UserList = () => {
   useEffect(() => {
     if (id) {
       const fetchUser = async () => {
-        const data = await getUser(id);
-        setUsername(data.username);
-        setEmail(data.email);
+        try {
+          const data = await getUser(id);
+          setUsername(data.username);
+          setEmail(data.email);
+          setIsEditing(true);
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
       };
       fetchUser();
-      setIsEditing(true);
     }
   }, [id]);
 
   const handleViewProfile = (id) => {
-    history.push(`/users/${id}`);
+    navigate(`/users/${id}`);
   };
 
   const handleDeleteUser = async (id) => {
-    await deleteUser(id);
-    setUsers(users.filter(user => user.id !== id));
+    try {
+      await deleteUser(id);
+      setUsers(users.filter(user => user.id !== id));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEditing) {
-      await updateUser(id, { username, email, password });
-    } else {
-      await addUser({ username, email, password });
+    try {
+      if (isEditing) {
+        await updateUser(id, { username, email, password });
+      } else {
+        await addUser({ username, email, password });
+      }
+      navigate('/users');
+    } catch (error) {
+      console.error("Error saving user:", error);
     }
-    history.push('/users');
   };
 
   if (loading) return <div>Loading...</div>;
@@ -92,7 +104,6 @@ const UserList = () => {
           </li>
         ))}
       </ul>
-      
     </div>
   );
 };

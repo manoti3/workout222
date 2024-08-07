@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getWorkouts, deleteWorkout, addWorkout, getWorkout, updateWorkout } from '../api';
 import './WorkoutList.css';
 
 const WorkoutList = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,33 +30,45 @@ const WorkoutList = () => {
   useEffect(() => {
     if (id) {
       const fetchWorkout = async () => {
-        const data = await getWorkout(id);
-        setDate(data.date);
-        setType(data.type);
-        setDuration(data.duration);
+        try {
+          const data = await getWorkout(id);
+          setDate(data.date);
+          setType(data.type);
+          setDuration(data.duration);
+          setIsEditing(true);
+        } catch (error) {
+          console.error("Error fetching workout:", error);
+        }
       };
       fetchWorkout();
-      setIsEditing(true);
     }
   }, [id]);
 
   const handleViewWorkout = (id) => {
-    history.push(`/workouts/${id}`);
+    navigate(`/workouts/${id}`);
   };
 
   const handleDeleteWorkout = async (id) => {
-    await deleteWorkout(id);
-    setWorkouts(workouts.filter(workout => workout.id !== id));
+    try {
+      await deleteWorkout(id);
+      setWorkouts(workouts.filter(workout => workout.id !== id));
+    } catch (error) {
+      console.error("Error deleting workout:", error);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEditing) {
-      await updateWorkout(id, { date, type, duration });
-    } else {
-      await addWorkout({ date, type, duration });
+    try {
+      if (isEditing) {
+        await updateWorkout(id, { date, type, duration });
+      } else {
+        await addWorkout({ date, type, duration });
+      }
+      navigate('/workouts');
+    } catch (error) {
+      console.error("Error saving workout:", error);
     }
-    history.push('/workouts');
   };
 
   if (loading) return <div>Loading...</div>;
@@ -93,7 +105,6 @@ const WorkoutList = () => {
           </li>
         ))}
       </ul>
-     
     </div>
   );
 };

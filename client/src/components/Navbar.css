@@ -1,25 +1,31 @@
 nav {
-    background-color: #333;
-    color: white;
-    padding: 1em;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    display: inline;
-    margin-right: 1em;
-  }
-  
-  a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: #333;
+  color: white;
+  padding: 1em;
+  font-family: Arial, sans-serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  margin: 0 1em;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #ff8c00;
+  text-decoration: underline;
+}
