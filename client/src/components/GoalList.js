@@ -64,17 +64,6 @@ const GoalList = () => {
     <div className="goal-list-container">
       <h2 className="goal-list-header">Goal List</h2>
       <Link to="/goals/add">Add Goal</Link>
-      <ul className="goal-list">
-        {goals.map((goal) => (
-          <li key={goal.id} className="goal-item">
-            <h1>{goal.description}</h1>
-            <p className="target-date">Target Date: {goal.target_date}</p>
-            <button onClick={() => handleViewGoal(goal.id)}>View Goal</button>
-            <Link to={`/goals/edit/${goal.id}`}>Edit</Link>
-            <button onClick={() => handleDeleteGoal(goal.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
       <form onSubmit={handleSubmit}>
         <label>
           Description:
@@ -88,6 +77,18 @@ const GoalList = () => {
         <br />
         <button type="submit">{isEditing ? 'Save Changes' : 'Add Goal'}</button>
       </form>
+      <ul className="goal-list">
+        {goals.map((goal) => (
+          <li key={goal.id} className="goal-item">
+            <h1>{goal.description}</h1>
+            <p className="target-date">Target Date: {goal.target_date}</p>
+            <button onClick={() => handleViewGoal(goal.id)}>View Goal</button>
+            <Link to={`/goals/edit/${goal.id}`}>Edit</Link>
+            <button onClick={() => handleDeleteGoal(goal.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+     
     </div>
   );
 };

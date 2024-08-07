@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getUsers, getWorkouts, getGoals } from '../api'; 
 import './Dashboard.css'; 
-import UserDetail from './UserDetail';
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);

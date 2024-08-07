@@ -1,13 +1,59 @@
 # app.py
 from flask import request, make_response, jsonify
+from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from datetime import timedelta
 from config import app, db, api
 from models import User, Workout, Goal
+
+# Initialize Bcrypt and JWT Manager
+bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
 
 # Define routes
 @app.route('/')
 def index():
     return '<h1>Project Server</h1>'
+
+# User registration endpoint
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data['username']
+    email = data['email']
+    password = data['password']
+    user = User.query.filter_by(username=username).first()
+    if user:
+        return make_response(jsonify({'error': 'Username already exists'}), 400)
+    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+    new_user = User(username=username, email=email, password_hash=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+    return make_response(jsonify({'message': 'User registered successfully'}), 201)
+
+# User login endpoint
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+    user = User.query.filter_by(username=username).first()
+    if not user or not user.check_password(password):
+        return make_response(jsonify({'error': 'Invalid username or password'}), 401)
+    access_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=1))
+    return make_response(jsonify({'access_token': access_token}), 200)
+
+# Protected route example
+@app.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    return jsonify(logged_in_as=user.username), 200
+
+
 
 # User resources
 class UserList(Resource):

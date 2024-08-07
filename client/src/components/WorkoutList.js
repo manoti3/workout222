@@ -65,16 +65,6 @@ const WorkoutList = () => {
     <div className="workout-list-container">
       <h2 className="workout-list-header">Workout List</h2>
       <Link to="/workouts/add">Add Workout</Link>
-      <ul className="workout-list">
-        {workouts.map((workout) => (
-          <li key={workout.id} className="workout-item">
-            <h1>{workout.date} - {workout.type} ({workout.duration} mins)</h1>
-            <button onClick={() => handleViewWorkout(workout.id)}>View Workout</button>
-            <Link to={`/workouts/edit/${workout.id}`}>Edit</Link>
-            <button onClick={() => handleDeleteWorkout(workout.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
       <form onSubmit={handleSubmit}>
         <label>
           Date:
@@ -93,6 +83,17 @@ const WorkoutList = () => {
         <br />
         <button type="submit">{isEditing ? 'Save Changes' : 'Add Workout'}</button>
       </form>
+      <ul className="workout-list">
+        {workouts.map((workout) => (
+          <li key={workout.id} className="workout-item">
+            <h1>{workout.date} - {workout.type} ({workout.duration} mins)</h1>
+            <button onClick={() => handleViewWorkout(workout.id)}>View Workout</button>
+            <Link to={`/workouts/edit/${workout.id}`}>Edit</Link>
+            <button onClick={() => handleDeleteWorkout(workout.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+     
     </div>
   );
 };
