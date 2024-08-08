@@ -8,17 +8,12 @@
   }
   
   .footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 20px; /* Space between columns */
     max-width: 1200px;
     margin: 0 auto;
-  }
-  
-  .footer-column {
-    flex: 1;
-    margin: 0 15px;
-    min-width: 200px;
+    text-align: center; /* Center align text within each column */
   }
   
   .footer-column h4 {
@@ -41,6 +36,7 @@
     color: #f4f4f4;
     text-decoration: none;
     font-size: 1rem;
+    display: block; /* Display links as block elements */
     transition: color 0.3s ease; /* Smooth transition for color change */
   }
   
@@ -50,6 +46,7 @@
   
   .icons {
     display: flex;
+    justify-content: center; /* Center align icons */
     gap: 15px;
     margin-top: 10px;
   }
@@ -65,11 +62,12 @@
     transform: scale(1.2); /* Scale up on hover */
   }
   
-  .newsletter {
+  .newsletter-container {
+    text-align: center;
     margin-top: 20px;
   }
   
-  .newsletter h4 {
+  .newsletter-container h4 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     color: #ffffff;
@@ -79,6 +77,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
   }
   
   .subscribe-input {

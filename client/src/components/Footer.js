@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTwitter, faFacebookF, faYoutube, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import "./Footer.css";
 
-
 function Footer() {
   return (
     <footer className='footer'>
@@ -60,17 +59,14 @@ function Footer() {
             <a href="https://github.com" className='text-white'><FontAwesomeIcon icon={faGithub} /></a>
           </div>
         </div>
+      </div>
 
-        {/* Newsletter Column */}
-        <div className="footer-column">
-          <div className='newsletter'>
-            <h4 className='text-uppercase'>Subscribe to Our Newsletter</h4>
-            <form className='subscribe-form'>
-              <input type='email' placeholder='Your Email Address' className='subscribe-input' />
-              <button type='submit' className='btn subscribe-button'>Subscribe</button>
-            </form>
-          </div>
-        </div>
+      <div className='newsletter-container'>
+        <h4 className='text-uppercase'>Subscribe to Our Newsletter</h4>
+        <form className='subscribe-form'>
+          <input type='email' placeholder='Your Email Address' className='subscribe-input' />
+          <button type='submit' className='btn subscribe-button'>Subscribe</button>
+        </form>
       </div>
 
       <div className='text-center p-3'>
